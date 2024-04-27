@@ -17,7 +17,7 @@ def pull_jobs(payload:dict):
       response = requests.post(url, headers=headers, data=json.dumps(payload))
       if response.status_code != 200:
         raise Exception(f'Error in pull task: {response.status_code} - {response.text}')
-      print(f"successfully pulled jobs for {payload['schema']}")
+      print(response.text)
     except Exception as e:
       raise e
 
@@ -33,7 +33,7 @@ def post_jobs(payload:dict):
       response = requests.post(url, headers=headers, data=json.dumps(payload))
       if response.status_code != 200:
         raise Exception(f'Error in post task: {response.status_code} - {response.text}')
-      print(f"successfully posted jobs for {payload['schema']}")
+      print(response.text)
     except Exception as e:
       raise e
 
@@ -41,6 +41,7 @@ def post_jobs(payload:dict):
 @flow(log_prints=True)
 def medtechfindr():
     try:
+      '''
       pull_jobs({
           "schema": "medtechfindr",
           "query": "cardiovascular tech in New York, NY",
@@ -51,6 +52,14 @@ def medtechfindr():
           "schema": "medtechfindr",
           "query": "radiology tech in New York, Ny",
           "job_titles": "Radiologic Technologist, Radiographer, X-Ray Technician, Computed Tomography (CT) Technologist, Magnetic Resonance Imaging (MRI) Technologist, Mammographer, Nuclear Medicine Technologist, Radiation Therapist, Interventional Radiology Technologist, Vascular Interventional Technologist, Sonographer, Ultrasound Technician, Cardiovascular Technologist, Cardiac Catheterization Technologist, Echocardiography Technician, Electrocardiogram (EKG/ECG) Technician, Stress Test Technician, Cardiac Sonographer, Vascular Technologist, Cardiac Electrophysiology Specialist, Cardiac Device Technician, Pacemaker Technician, Perfusionist"
+      })
+      '''
+      post_jobs({
+          "schema":"medtechfindr",
+          "limit": 10,
+          "hash_tags": "#MedicalTechnicianJobs #HiringMedicalTechnicians #MedTechCareers",
+          "post_to_reddit": True,
+          "post_to_slack": True
       })
 
     except Exception as e:
