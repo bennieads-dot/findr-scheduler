@@ -3,6 +3,7 @@ import requests
 from prefect.variables import Variable
 from prefect.blocks.system import Secret
 from prefect import flow, task
+from prefect_github.repository import GitHubRepository
 
 @task
 def pull_jobs(payload:dict):
@@ -16,7 +17,7 @@ def pull_jobs(payload:dict):
       response = requests.post(url, headers=headers, data=json.dumps(payload))
       if response.status_code != 200:
         raise Exception(f'Error in pull task: {response.status_code} - {response.text}')
-      print(f'successfully posted jobs for {payload.schema}')
+      print(f'successfully pulled jobs for {payload['schema']}')
     except Exception as e:
       raise e
 
@@ -32,7 +33,7 @@ def post_jobs(payload:dict):
       response = requests.post(url, headers=headers, data=json.dumps(payload))
       if response.status_code != 200:
         raise Exception(f'Error in post task: {response.status_code} - {response.text}')
-      print(f'successfully posted jobs for {payload.schema}')
+      print(f'successfully posted jobs for {payload['schema']}')
     except Exception as e:
       raise e
 
@@ -55,8 +56,18 @@ def medtechfindr():
        print(e)
 
 if __name__ == "__main__":
+    '''
     medtechfindr.serve(
         name="medtechfindr Daily",
         cron = "0 1 * * *",
         description="Pulls and posts medtechfindr jobs daily at",
+    )
+    '''
+    # For deploying to work pool
+    medtechfindr.from_source(
+      source=GitHubRepository.load("findr-scheduler"), 
+      entrypoint="medtechfindr.py:medtechfindr"
+    ).deploy(
+      name="medtechfindr Daily",
+      work_pool_name="findr",
     )
