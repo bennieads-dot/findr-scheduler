@@ -43,15 +43,16 @@ def medtechfindr():
     try:
       pull_jobs({
           "schema": "medtechfindr",
-          "query": "CT tech in Baltimore, MD",
+          "query": "cardiovascular tech in New York, NY",
           "job_titles": "Radiologic Technologist, Radiographer, X-Ray Technician, Computed Tomography (CT) Technologist, Magnetic Resonance Imaging (MRI) Technologist, Mammographer, Nuclear Medicine Technologist, Radiation Therapist, Interventional Radiology Technologist, Vascular Interventional Technologist, Sonographer, Ultrasound Technician, Cardiovascular Technologist, Cardiac Catheterization Technologist, Echocardiography Technician, Electrocardiogram (EKG/ECG) Technician, Stress Test Technician, Cardiac Sonographer, Vascular Technologist, Cardiac Electrophysiology Specialist, Cardiac Device Technician, Pacemaker Technician, Perfusionist"
       })
 
       pull_jobs({
           "schema": "medtechfindr",
-          "query": "CT tech in New York, Ny",
+          "query": "radiology tech in New York, Ny",
           "job_titles": "Radiologic Technologist, Radiographer, X-Ray Technician, Computed Tomography (CT) Technologist, Magnetic Resonance Imaging (MRI) Technologist, Mammographer, Nuclear Medicine Technologist, Radiation Therapist, Interventional Radiology Technologist, Vascular Interventional Technologist, Sonographer, Ultrasound Technician, Cardiovascular Technologist, Cardiac Catheterization Technologist, Echocardiography Technician, Electrocardiogram (EKG/ECG) Technician, Stress Test Technician, Cardiac Sonographer, Vascular Technologist, Cardiac Electrophysiology Specialist, Cardiac Device Technician, Pacemaker Technician, Perfusionist"
       })
+
     except Exception as e:
        print(e)
 
