@@ -5,6 +5,8 @@ from prefect.blocks.system import Secret
 from prefect import flow, task
 from prefect_github.repository import GitHubRepository
 
+from default_reqs import default_reqs
+
 @task
 def pull_jobs(payload:dict):
     try:
@@ -39,7 +41,9 @@ def post_jobs(payload:dict):
 
 
 @flow(log_prints=True)
-def medtechfindr(reqs:dict):
+def medtechfindr(reqs:dict = None):
+    if not reqs:
+      reqs = default_reqs
     try:
 
       if reqs.get('pull').get('payloads'):
