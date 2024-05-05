@@ -1,5 +1,3 @@
-import logging
-import os
 import requests
 
 from prefect.variables import Variable

@@ -1,15 +1,6 @@
-import json
-import requests
-from supabase import create_client, Client
-from supabase.lib.client_options import ClientOptions
-
-from prefect.variables import Variable
-from prefect.blocks.system import Secret
 from prefect import flow, task
-from prefect_github.repository import GitHubRepository
 
 from default_reqs import default_reqs
-from models.models import jobListModel
 
 from import_jobs import import_jobs
 from post_jobs import post_jobs
