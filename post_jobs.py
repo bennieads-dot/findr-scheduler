@@ -119,12 +119,11 @@ def post_jobs(req):
     print(f"Start post jobs function for {req.get('schema')}")
     jobs = fetch_jobs(req, supabase)
 
-    if not jobs:
+    if jobs:
+      jobs = post_jobs_func(req,jobs)
+      update_jobs(jobs, supabase)
+      print(f"successfully posted {len(jobs)} jobs for model: {req.get('schema')}")
+    else:
       print("No new jobs found")
-      raise Exception("No new jobs found")
-
-    jobs = post_jobs_func(req,jobs)
-    update_jobs(jobs, supabase)
-    print(f"successfully posted {len(jobs)} jobs for model: {req.get('schema')}")
   except Exception as e:
     raise e
