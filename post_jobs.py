@@ -1,12 +1,10 @@
-import logging
-import os
 import praw
 import slack_sdk
 from datetime import datetime, timezone
+
 from supabase import create_client, Client
 from supabase.lib.client_options import ClientOptions
 
-from prefect.variables import Variable
 from prefect.blocks.system import Secret
 from prefect import flow, task
 
