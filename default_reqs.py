@@ -6,7 +6,7 @@ default_reqs = {
       {
         "limit": 10,
         "schema": "medtechfindr",
-        "hash_tags": "#MedicalTechnicianJobs #HiringMedicalTechnicians #MedTechCareers",
+        "hash_tags": "\#MedicalTechnicianJobs #HiringMedicalTechnicians #MedTechCareers",
         "post_to_slack": True,
         "post_to_reddit": True
       }
