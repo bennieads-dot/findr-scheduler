@@ -20,7 +20,7 @@ def find_jobs(req):
                   "page":"1",
                   "num_pages":"1",
                   "job_titles":req.get('job_titles'),
-                  "exclude_job_publishers": "indeed,glassdoor,ziprecruiter,linkedin"
+                  "exclude_job_publishers": Variable.get('excluded_publishers').value
     }
     headers = {
       "X-RapidAPI-Key": jsearch_key,
@@ -56,7 +56,7 @@ def merge_jobs(req, jobs):
     supabase.table('jobs') \
     .upsert(jobs.get('data')) \
     .execute()
-    print(f"successfully merged: {len(jobs.get('data'))} jobs for model: {req.get('schema')}")
+    print(f"successfully merged: {len(jobs.get('data'))} jobs for schema: {req.get('schema')}")
   except Exception as e:
     raise e
   
