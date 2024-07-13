@@ -1,6 +1,7 @@
 from prefect import flow, task
+from prefect_github.repository import GitHubRepository
 
-from default_reqs import default_reqs
+from default_reqs import medtech_findr_reqs
 
 from import_jobs import import_jobs
 from post_jobs import post_jobs
@@ -30,7 +31,7 @@ def post_medtechfindr_jobs(payloads:dict):
 def medtechfindr(reqs:dict = None):
 
     if not reqs:
-      reqs = default_reqs
+      reqs = medtech_findr_reqs
     
     try:
       if reqs.get('pull').get('payloads'):
