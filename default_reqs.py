@@ -1,6 +1,6 @@
 import json
 
-default_reqs = {
+medtech_findr_reqs = {
   "post": {
     "payloads": [
       {
